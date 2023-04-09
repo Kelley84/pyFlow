@@ -27,7 +27,7 @@ class Debit(models.Model):
         (6, "Other"),
     ]
     flowID = models.ForeignKey(FlowObj, on_delete=models.CASCADE)
-    accoID = models.ForeignKey(Account)
+    accoID = models.ForeignKey(Account, on_delete=models.SET_NULL)
     typeOf = models.IntegerField(choices=DEBIT_TYPES)
     amount = models.DecimalField(decimal_places=2)
     due = models.DateField()
@@ -39,7 +39,7 @@ class Credit(models.Model):
         (2, "Other"),
     ]
     flowID = models.ForeignKey(FlowObj, on_delete=models.CASCADE)
-    accoID = models.ForeignKey(Account)
+    accoID = models.ForeignKey(Account, on_delete=models.SET_NULL)
     typeOf = models.IntegerField(choices=CREDIT_TYPES)
     amount = models.DecimalField(decimal_places=2)
     date = models.DateField()
