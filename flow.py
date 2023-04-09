@@ -1,6 +1,9 @@
-# def hey(x, y):
-#     print(x + y)
+#flow util
+
+def newFlowObj(long, short, bal):
+    obj = FlowObj(nameLong=long, nameShort=short, balance=bal)
+    obj.save()
     
-# b = 5
-# a = 3
-# hey(b, a)
+def showFlowObj():
+    from flow.models import FlowObj
+    print(FlowObj.objects.all())
