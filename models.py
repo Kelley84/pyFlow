@@ -3,7 +3,7 @@ from django.db import models
 class FlowObj(models.Model):
     nameLong = models.CharField(max_length=10)
     nameShort = models.CharField(max_length=50)
-    balance = models.DecimalField(decimal_places=2)
+    balance = models.DecimalField(decimal_places=2, max_digits=10)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     
@@ -27,9 +27,9 @@ class Debit(models.Model):
         (6, "Other"),
     ]
     flowID = models.ForeignKey(FlowObj, on_delete=models.CASCADE)
-    accoID = models.ForeignKey(Account, on_delete=models.SET_NULL)
+    accoID = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     typeOf = models.IntegerField(choices=DEBIT_TYPES)
-    amount = models.DecimalField(decimal_places=2)
+    amount = models.DecimalField(decimal_places=2, max_digits=10)
     due = models.DateField()
     
 class Credit(models.Model):
@@ -39,9 +39,9 @@ class Credit(models.Model):
         (2, "Other"),
     ]
     flowID = models.ForeignKey(FlowObj, on_delete=models.CASCADE)
-    accoID = models.ForeignKey(Account, on_delete=models.SET_NULL)
+    accoID = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     typeOf = models.IntegerField(choices=CREDIT_TYPES)
-    amount = models.DecimalField(decimal_places=2)
+    amount = models.DecimalField(decimal_places=2, max_digits=10)
     date = models.DateField()
     
 class Frequency(models.Model):
